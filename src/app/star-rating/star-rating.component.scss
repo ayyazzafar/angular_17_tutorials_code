@@ -16,4 +16,14 @@
 
     transition: color 0.3s ease-in-out;
   }
+
+  &.readOnly {
+    fa-icon {
+      cursor: default;
+      &:hover:not(.rated),
+      &:hover ~ fa-icon:not(.rated) {
+        color: gray;
+      }
+    }
+  }
 }

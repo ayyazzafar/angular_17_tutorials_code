@@ -4,7 +4,14 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    flex-direction: column;
+    gap: 10px;
   "
 >
-  <app-star-rating></app-star-rating>
+  <app-star-rating [rating]="1"></app-star-rating>
+  <app-star-rating [rating]="5"></app-star-rating>
+  <app-star-rating [rating]="2"></app-star-rating>
+  <app-star-rating [rating]="4"></app-star-rating>
+  <app-star-rating [rating]="0"></app-star-rating>
+  <app-star-rating [rating]="5"></app-star-rating>
 </div>
