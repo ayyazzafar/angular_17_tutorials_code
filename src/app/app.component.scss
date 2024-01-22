@@ -1,3 +1,29 @@
-.hidden {
-  display: none;
+nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+
+  ul {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: bold;
+
+      font-family: Arial, Helvetica, sans-serif;
+      &:hover,
+      &.active {
+        color: #8e2929;
+      }
+    }
+  }
 }
