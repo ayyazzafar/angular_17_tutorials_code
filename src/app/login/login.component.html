@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<form (submit)="login($event)">
+  <div>
+    <input type="text" name="email" placeholder="Email" [(ngModel)]="email" />
+  </div>
+  <div>
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+  </div>
+
+  <button>Login</button>
+</form>
