@@ -6,5 +6,52 @@
     height: 100vh;
   "
 >
-  Hello world
+  <form [formGroup]="userProfileForm">
+    <!-- Personal Information Section -->
+    <div formGroupName="personalInfo" class="nestedFb">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" />
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+      </div>
+    </div>
+
+    <div formGroupName="addresses">
+      <h1>Address:</h1>
+      @for(addressGroup of addressGroups.controls; track $index){
+      <div [formGroupName]="$index" class="nestedFb">
+        <h2>Address {{ $index + 1 }}</h2>
+        <div>
+          <label for="street">Street:</label>
+          <input type="text" id="street" formControlName="street" />
+        </div>
+
+        <div>
+          <label for="city">City:</label>
+          <input type="text" id="city" formControlName="city" />
+        </div>
+
+        <div class="zipcode">
+          <label for="zipCode">Zip Code:</label>
+          <input type="text" id="zipCode" formControlName="zipCode" />
+        </div>
+
+        <div>
+          <button type="button" (click)="removeAddress($index)">
+            Remove Address
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <button type="button" (click)="addAddress()">Add Address</button>
+    <!-- Address Section -->
+    <button type="submit">Submit</button>
+    {{ userProfileForm.value | json }}
+  </form>
 </div>

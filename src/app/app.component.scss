@@ -1,3 +1,18 @@
-.hidden {
-  display: none;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .nestedFb {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    div {
+      display: flex;
+      gap: 10px;
+      label {
+        width: 200px;
+      }
+    }
+  }
 }
