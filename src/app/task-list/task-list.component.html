@@ -1,0 +1,7 @@
+<ul>
+  @for (task of urgentTasks(); track $index) {
+  <li>Task: {{ task.title }}</li>
+  }
+</ul>
+
+<button (click)="addTask()">Add Urgent Task</button>
