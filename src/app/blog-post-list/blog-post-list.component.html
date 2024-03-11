@@ -1,0 +1,19 @@
+<p>blog-post-list works!</p>
+<h2>Blog Posts</h2>
+<input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search...">
+<div [@pageAnimation]="currentPage">
+  <ul>
+    @for(post of blogPosts; track post.id)
+    {
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.content }}</p>
+    }
+
+  </ul>
+
+</div>
+<div>
+  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
