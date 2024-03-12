@@ -1,0 +1,13 @@
+<p>child works!</p>
+<select [(ngModel)]="sortOrder" (change)="sortItems()">
+  <option value="asc">Ascending</option>
+  <option value="desc">Descending</option>
+</select>
+<ul>
+  @for(item of sortedItems; track item){
+    <li>{{item}}</li>
+  }
+</ul>
+
+
+<button (click)="addItem('new item')">Add Item</button>

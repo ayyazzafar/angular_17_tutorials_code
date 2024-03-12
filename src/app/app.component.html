@@ -6,5 +6,14 @@
     height: 100vh;
   "
 >
-  Hello world
+<!-- search input -->
+  <input
+    type="text"
+    placeholder="Search"
+    style="padding: 10px; margin-bottom: 20px"
+    (keyup)="filterItems()"
+    [(ngModel)]="searchTerm"
+
+  />
+  <app-child [items]="searchTerm=='' ? data:filteredItems" (itemAdded)="onItemAdded($event)"></app-child>
 </div>
