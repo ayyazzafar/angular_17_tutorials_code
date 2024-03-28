@@ -1,0 +1,14 @@
+<form  [formGroup]="form" style="display: flex; gap:20px;;">
+
+  @for(option of options; track option.value){
+   <label>
+    <input type="radio" [value]="option.value" formControlName="selectedOption" />
+    {{option.label}}
+   </label>
+  }
+
+  @if(form.get('selectedOption')?.invalid && form.get('selectedOption')?.touched){
+    <div class="error">Please select an option</div>
+
+  }
+</form>
