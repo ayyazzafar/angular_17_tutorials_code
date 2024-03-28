@@ -1,0 +1,17 @@
+<form #checkboxForm="ngForm"  (submit)="onSubmit()">
+
+  <label for="">
+
+    <input type="checkbox" [(ngModel)]="isChecked" required name="terms" />
+    Accept Terms and Conditions
+  </label>
+
+
+  @if (checkboxForm.form.invalid && checkboxForm.form.touched) {
+    <div class="alert alert-danger">
+      You must accept the terms and conditions
+    </div>
+  }
+
+  <button type="submit">Submit</button>
+</form>
