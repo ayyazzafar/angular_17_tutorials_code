@@ -1,10 +1,16 @@
-<div
-  style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  "
->
-  Hello world
-</div>
+
+<nav style="display: flex; width: 100%; height:50px; align-items: center; justify-content: center; border: 1px solid #CCC; gap:20px;">
+  <a routerLink="/" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">Home</a>
+  <a routerLink="/about"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a>
+  <a routerLink="/contact/hello"   routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">Contact</a>
+
+</nav>
+<router-outlet></router-outlet>
+
+
+@if(router.url==='/about'){
+  <div>
+    <h2>Special Offer</h2>
+    <p>Get 50% off on all products today.</p>
+  </div>
+}
