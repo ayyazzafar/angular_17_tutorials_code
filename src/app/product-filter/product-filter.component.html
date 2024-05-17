@@ -1,0 +1,10 @@
+<div>
+  <h3>Filter Products</h3>
+  <select name="selectedCategory" id="selectedCategory" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+    <option value="">All categories</option>
+    <option value="laptops">Laptops</option>
+    <option value="phones">Phones</option>
+    <option value="tablets">Tablets</option>
+
+  </select>
+</div>
