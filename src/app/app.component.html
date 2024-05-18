@@ -1,10 +1,9 @@
-<div
-  style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  "
->
-  Hello world
+<div>
+<a [routerLink]="['/test']">Test</a> |
+<a [routerLink]="['/test2']">Test2</a> |
+<a [routerLink]="['/']">Home</a>
+ <router-outlet></router-outlet>
+
+ <h1>Current URL {{previousRouteService.getCurrentUrl()}}</h1>
+  <h1>Previous URL {{previousRouteService.getPreviousUrl()}}</h1>
 </div>
