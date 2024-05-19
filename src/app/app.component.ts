@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,4 +10,17 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+
+  httpClient = inject(HttpClient);
+
+  fetchUsers(){
+    this.httpClient.get('https://jsonplaceholder.typicode.com/users').subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  constructor(){
+    this.fetchUsers();
+  }
+}
