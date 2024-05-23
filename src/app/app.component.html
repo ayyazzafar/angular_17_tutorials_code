@@ -1,10 +1,44 @@
-<div
-  style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  "
+<a routerLink="page1">
+  Page1
+</a> |
+<a routerLink="page2/23">
+  Page2
+</a>
+|
+
+<a routerLink="page2/232323" [queryParams]="{name: 'xyz', age: 23}">
+  Page2 with query params
+</a>
+
+<div></div>
+<br>
+<button
+  (click)="navigate()"
+>Navigate to page 1
+</button>
+
+<button
+  (click)="navigateToPage2()"
+>Navigate to page 2
+</button>
+
+<button
+  (click)="navigateToPage2WithQueryParams()"
+>Navigate to page 2 with params
+</button>
+
+<button
+  (click)="navigateByUrl()"
 >
-  Hello world
-</div>
+  Navigate by URL
+</button>
+
+<button (click)="goBack()">
+  Go back
+</button>
+
+<button (click)="goForward()">
+  Go forward
+</button>
+
+<router-outlet></router-outlet>
