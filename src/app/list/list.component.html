@@ -1,0 +1,12 @@
+<div>
+  <h2>Item List</h2>
+  <ul>
+    @for(item of items; track item.id){
+      <li
+
+      routerLink="/detail"
+      [queryParams]="{id: item.id, xyz: 'abc'}"
+      >{{item.name}}</li>
+    }
+  </ul>
+</div>
