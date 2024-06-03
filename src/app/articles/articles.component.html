@@ -1,0 +1,9 @@
+<button (click)="articles = []">Clear all articles</button>
+| <button (click)="loadArticles()">Load Articles</button>
+
+@for(article of articles; track article.id){
+  <div>
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.body }}</p>
+  </div>
+}
