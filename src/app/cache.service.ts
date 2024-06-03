@@ -10,11 +10,17 @@ export class CacheService {
   constructor() { }
 
 
-  get(key: string): Observable<any> | null {
+  get(url: string, params: any = {}, body: any = {}): Observable<any> | null {
+    const key = this.generateCacheKey(url, params, body);
     return this.cache.has(key) ? of(this.cache.get(key)) : null;
   }
 
-  set(key: string, value: any): void{
+  set(url: string, params: any ={}, body: any  = {}, value: any): void{
+    const key = this.generateCacheKey(url, params, body);
     this.cache.set(key, value)
+  }
+
+  private generateCacheKey(url: string, params: any, body: any): string{
+    return `${url}|${JSON.stringify(params)}|${JSON.stringify(body)}`
   }
 }
