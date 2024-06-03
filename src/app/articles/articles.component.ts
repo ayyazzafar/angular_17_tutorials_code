@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../data.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-articles',
@@ -16,7 +16,8 @@ export class ArticlesComponent {
   offset = 0;
   limit = 10;
 
-  private dataService = inject(DataService);
+  http = inject(HttpClient)
+
 
 
   constructor(){
@@ -24,10 +25,17 @@ export class ArticlesComponent {
   }
 
   loadArticles(){
-    this.dataService.getData('https://jsonplaceholder.typicode.com/posts', {
-      offset: this.offset,
-      limit: this.limit
-    }).subscribe(data=>this.articles = data);
+    const httpParams = new HttpParams({
+      fromObject: {
+        offset: this.offset,
+        limit: this.limit
+      }
+    });
+    this.http.get('https://jsonplaceholder.typicode.com/posts',{
+      params: httpParams
+    }).subscribe((data: any)=>{
+      this.articles = data;
+    });
   }
 
 }

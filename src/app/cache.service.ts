@@ -5,22 +5,23 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class CacheService {
-  private cache = new Map<string, any>();
+   cache: any = {};
 
-  constructor() { }
-
-
-  get(url: string, params: any = {}, body: any = {}): Observable<any> | null {
-    const key = this.generateCacheKey(url, params, body);
-    return this.cache.has(key) ? of(this.cache.get(key)) : null;
+  set(key: string, value: any){
+    this.cache[key] = value;
+    localStorage.setItem('cache', JSON.stringify(this.cache));
   }
 
-  set(url: string, params: any ={}, body: any  = {}, value: any): void{
-    const key = this.generateCacheKey(url, params, body);
-    this.cache.set(key, value)
-  }
+  get(key: string){
+    if(this.cache[key]){
+      return this.cache[key];
+    }
 
-  private generateCacheKey(url: string, params: any, body: any): string{
-    return `${url}|${JSON.stringify(params)}|${JSON.stringify(body)}`
+    const cache = localStorage.getItem('cache');
+
+    if(cache){
+      this.cache = JSON.parse(cache);
+      return this.cache[key];
+    }
   }
 }
