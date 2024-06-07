@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { RefreshService } from '../refresh.service';
 
 @Component({
   selector: 'app-example',
@@ -9,26 +10,33 @@ import { Router } from '@angular/router';
   templateUrl: './example.component.html',
   styleUrl: './example.component.scss'
 })
-export class ExampleComponent {
+export class ExampleComponent implements OnInit, OnDestroy{
 
   content: string = ''
-  private router = inject(Router)
+  private subscription?: Subscription;
+  private refreshService = inject(RefreshService);
 
 
   reloadComponent(){
-    let currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {
-      skipLocationChange: true,
-    }).then(()=>{
-      this.router.navigate([currentUrl])
-    });
+   this.refreshService.triggerRefresh();
   }
 
   loadData(){
     this.content = 'Data loaded at '+ new Date().toLocaleTimeString();
   }
 
-  constructor(){
-    this.loadData();
+  ngOnInit(): void {
+      this.subscription = this.refreshService.refresh$.subscribe(()=>{
+        this.loadData();
+      });
+
+      this.loadData();
   }
+
+  ngOnDestroy(): void {
+      if(this.subscription){
+        this.subscription.unsubscribe();
+      }
+  }
+
 }
